@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('/contact', 'ContactController');
+Route::get('/contactList', 'ContactController@ajaxContactList');

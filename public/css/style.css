@@ -1,0 +1,29 @@
+body {
+
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.navbar-brand {
+    margin-top: -10px;
+}
+.content {
+    margin: 15px;
+    padding: 20px;
+}
+
+.footer {
+    margin-top: 100px;
+    text-align: center;
+    height: 100px;
+    background-color: #e7e7e7;
+    color: black;
+}
+
+.footer p {
+    margin: 15px;
+    padding: 5px;
+}
