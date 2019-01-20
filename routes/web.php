@@ -11,5 +11,10 @@
 |
 */
 
-Route::resource('/contact', 'ContactController');
-Route::get('/contactList', 'ContactController@ajaxContactList');
+Route::get('/', function () {
+    return redirect('/contacts');
+});
+
+Route::resource('/contacts', 'ContactController')->except('destroy');
+Route::get('/contactsList', 'ContactController@ajaxContactList');
+Route::get('/contacts/{id}/delete', 'ContactController@destroy');

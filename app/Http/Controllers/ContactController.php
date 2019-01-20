@@ -9,11 +9,7 @@ use Yajra\DataTables\Facades\DataTables;
 
 class ContactController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         return view('contact.index');
@@ -25,78 +21,63 @@ class ContactController extends Controller
 
         return Datatables::of($contact)
             ->addColumn('action', function ($contact) {
-                return '<a href="'.url('/contact'.$contact->id.'/edit').'"><i class="fas fa-pencil-alt"></i></a>
-                        <a href="'.url('/contact/'.$contact->id).'" ><i class="fas fa-trash-alt"></i></a>
-                        <a href="'.url('/contact/'.$contact->id).'"><i class="fas fa-eye"></i></a>
-                        <a href="'.url('/contact/'.$contact->id.'/edit').'"><i class="fas fa-download"></i></a>';
-            })
+                return '<a href="'.url('/contacts'.$contact->id.'/edit').'"><i class="fas fa-pencil-alt"></i></a>
+                        <a href="'.url('/contacts/'.$contact->id.'/delete').'" ><i class="fas fa-trash-alt"></i></a>
+                        <a href="'.url('/contacts/'.$contact->id).'"><i class="fas fa-eye"></i></a>
+                        <a href="'.url('/contacts/'.$contact->id.'/edit').'"><i class="fas fa-download"></i></a>';
+            })//add action colum to the datatable
             ->make(true);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
-        dd('loool');
+        return view('contact.detail')->with('add', true);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store(Request $request, Contact $contact)
     {
-        //
+        $this->validate($request, [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email'
+        ]);
+        $contact->create($request->all());
+        return Redirect('/contacts')->withFlashMessage('The Contact is successfully created');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
-        dd('hello');
+        $contact = Contact::find($id);
+        return view('contact.detail', compact('contact'))->with('show', true);
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
-        dd($id);
+        $contact = Contact::find($id);
+        return view('contact.detail', compact('contact'))->with('edit', true);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email'
+        ]);
+        Contact::where('id', $id)->update($request->except(['_method', '_token']));
+        return Redirect::back()->withFlashMessage('The Contact is successfully updated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy()
+
+    public function destroy($id, Contact $contact)
     {
-        return Redirect::back();
+        $contact->find($id)->delete();
+        return Redirect('/contacts')->withFlashMessage('The Contact is successfully deleted');
     }
 }

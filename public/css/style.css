@@ -1,7 +1,5 @@
 body {
-
 }
-
 a {
     text-decoration: none;
     color: black;
@@ -15,6 +13,65 @@ a {
     padding: 20px;
 }
 
+.box {
+    position: relative;
+    border-radius: 3px;
+    border-top: 3px solid #d2d6de;
+    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+
+}
+
+.box.box-primary {
+    border-top-color: #3c8dbc;
+}
+
+.box-body {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    padding: 10px;
+}
+
+.box-title {
+    margin: 0px;
+    padding: 10px;
+    display: inline-block;
+    font-size: 18px;
+    line-height: 1;
+}
+
+.box-footer {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top: 1px solid #f4f4f4;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.box-action {
+    padding: 5px;
+}
+
+
+.form-row {
+    border-top: 3px solid #d2d6de;
+    background-color: #fff;
+    padding: 15px;
+}
+
+.form-title {
+    margin-top: -5px;
+}
+
+.form-group {
+    min-height: 20px;
+}
+
 .footer {
     margin-top: 100px;
     text-align: center;
@@ -23,7 +80,11 @@ a {
     color: black;
 }
 
+.footer-icon {
+    font-size: 30px;
+}
+
 .footer p {
-    margin: 15px;
+    margin: 10px;
     padding: 5px;
 }

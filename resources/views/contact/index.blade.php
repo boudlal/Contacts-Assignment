@@ -34,13 +34,13 @@
         $('#myTable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{{ url('/contactList') }}',
+            ajax: '{{ url('/contactsList') }}',
             columns: [
                 { data: 'id', name: 'id' },
-                { data: 'first_name', name: 'first_name' },
-                { data: 'email', name: 'email' },
-                { data: 'city', name: 'city' },
                 { data: 'birth_date', name: 'birth_date' },
+                { data: 'first_name', name: 'first_name' },
+                { data: 'city', name: 'city' },
+                { data: 'email', name: 'email' },
                 { data: 'phone_number', name: 'phone_number' },
                 { data: 'company_name', name: 'company_name' },
                 { data: 'action', name: 'action', orderable: false, searchable: false }

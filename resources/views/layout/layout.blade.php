@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Airbit Assignment</title>
 
     {!! Html::style('https://fonts.googleapis.com/css?family=Raleway:100,600') !!}
     {!! Html::style('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css') !!}
+    {!! Html::style('https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css') !!}
     {!! Html::style('https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css') !!}
     {!! Html::style('https://use.fontawesome.com/releases/v5.6.3/css/all.css') !!}
     {!! Html::style('./css/style.css') !!}
@@ -33,12 +34,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><img src="{{ asset('img/logo.png') }}"/></a>
+                <a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('img/logo.png') }}"/></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="../navbar-static-top/">The list of Contact</a></li>
-                    <li><a href="../navbar-fixed-top/">Add Contact</a></li>
+                    <li><a href="{{ url('/contacts') }}">The list of Contact</a></li>
+                    <li><a href="{{ url('/contacts/create') }}">Add Contact</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
@@ -59,9 +60,9 @@
                 <p>
                     © 2019 Nabil Boudlal, made with ☕️
                 </p>
-                <p>
-                    <a href=""><i class="fab fa-linkedin"></i></a>
-                    <a href=""><i class="fab fa-github"></i></a>
+                <p class="footer-icon">
+                    <a href="https://www.linkedin.com/in/nabilboudlal"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/boudlal"><i class="fab fa-github"></i></a>
                 </p>
             </div>
     </footer>
@@ -71,8 +72,15 @@
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 
+<script>
+    $( function() {
+        $( "#datepicker" ).datepicker();
+    } );
+</script>
 
 @yield('script')
 </body>
