@@ -5,12 +5,17 @@ a {
     color: black;
 }
 
+tr {
+    text-transform: uppercase;
+}
+
 .navbar-brand {
     margin-top: -10px;
 }
 .content {
     margin: 15px;
     padding: 20px;
+    min-height: 500px;
 }
 
 .box {

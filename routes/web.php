@@ -18,3 +18,5 @@ Route::get('/', function () {
 Route::resource('/contacts', 'ContactController')->except('destroy');
 Route::get('/contactsList', 'ContactController@ajaxContactList');
 Route::get('/contacts/{id}/delete', 'ContactController@destroy');
+Route::get('/contacts/{id}/export','ContactController@export_pdf');
+

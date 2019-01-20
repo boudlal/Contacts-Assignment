@@ -13,7 +13,7 @@
                     <div class="box-action pull-right">
                         <a href="{{url('/contacts/'.$contact->id.'/delete')}}" class="btn btn-sm btn-default"><i class="fas fa-trash"></i></a>
                         <a href="{{url('/contacts/'.$contact->id.'/edit')}}" class="btn btn-sm btn-default"><i class="fas fa-pencil-alt"></i></a>
-                        <a href="{{url('/contacts/'.$contact->id.'/download')}}" class="btn btn-sm btn-default"><i class="fas fa-download"></i></a>
+                        <a href="{{url('/contacts/'.$contact->id.'/export')}}" class="btn btn-sm btn-default"><i class="fas fa-download"></i></a>
                     </div>
                 @endif
             </div>

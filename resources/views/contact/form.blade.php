@@ -78,10 +78,6 @@
         </div>
 
         <div class="form-group box-footer">
-            <div class="pull-left">
-                <input type="checkbox" required />
-                <span>I agree with the <a href="#">Terms</a></span>
-            </div>
             <input type="submit" class="btn btn-primary pull-right" value="update">
         </div>
 
@@ -117,7 +113,6 @@
             @endif
         </div>
 
-        <div class="clearfix"></div>
     </div>
 
 </div>

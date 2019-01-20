@@ -12,6 +12,7 @@
     {!! Html::style('https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css') !!}
     {!! Html::style('https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css') !!}
     {!! Html::style('https://use.fontawesome.com/releases/v5.6.3/css/all.css') !!}
+    {!! Html::style('https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css') !!}
     {!! Html::style('./css/style.css') !!}
 
 
@@ -69,17 +70,18 @@
 
 </div>
 
-
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"
-        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+{!! Html::script('https://code.jquery.com/jquery-2.2.4.min.js') !!}
+{!! Html::script('https://code.jquery.com/ui/1.12.1/jquery-ui.js') !!}
+{!! Html::script('https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js') !!}
+{!! Html::script('https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js') !!}
 
 <script>
     $( function() {
         $( "#datepicker" ).datepicker();
     } );
+
+    @include('layout.toast')
+
 </script>
 
 @yield('script')

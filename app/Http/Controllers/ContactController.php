@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Contact;
 use Illuminate\Support\Facades\Redirect;
 use Yajra\DataTables\Facades\DataTables;
+use Barryvdh\DomPDF\PDF;
 
 class ContactController extends Controller
 {
@@ -21,10 +22,10 @@ class ContactController extends Controller
 
         return Datatables::of($contact)
             ->addColumn('action', function ($contact) {
-                return '<a href="'.url('/contacts'.$contact->id.'/edit').'"><i class="fas fa-pencil-alt"></i></a>
+                return '<a href="'.url('/contacts/'.$contact->id.'/edit').'"><i class="fas fa-pencil-alt"></i></a>
                         <a href="'.url('/contacts/'.$contact->id.'/delete').'" ><i class="fas fa-trash-alt"></i></a>
                         <a href="'.url('/contacts/'.$contact->id).'"><i class="fas fa-eye"></i></a>
-                        <a href="'.url('/contacts/'.$contact->id.'/edit').'"><i class="fas fa-download"></i></a>';
+                        <a href="'.url('/contacts/'.$contact->id.'/export').'"><i class="fas fa-download"></i></a>';
             })//add action colum to the datatable
             ->make(true);
     }
@@ -44,7 +45,7 @@ class ContactController extends Controller
             'email' => 'required|email'
         ]);
         $contact->create($request->all());
-        return Redirect('/contacts')->withFlashMessage('The Contact is successfully created');
+        return Redirect('/contacts')->with('success', 'The Contact is successfully created');
     }
 
 
@@ -71,13 +72,20 @@ class ContactController extends Controller
             'email' => 'required|email'
         ]);
         Contact::where('id', $id)->update($request->except(['_method', '_token']));
-        return Redirect::back()->withFlashMessage('The Contact is successfully updated');
+        return Redirect('/contacts')->with('success', 'The Contact is successfully updated');
     }
 
 
     public function destroy($id, Contact $contact)
     {
         $contact->find($id)->delete();
-        return Redirect('/contacts')->withFlashMessage('The Contact is successfully deleted');
+        return Redirect('/contacts')->with('success', 'The Contact is successfully deleted');
+    }
+
+    public function export_pdf($id, PDF $pdf, Contact $contact)
+    {
+        $contact = $contact->find($id);
+        $pdf = $pdf->loadView('contact.export',compact('contact'));
+        return $pdf->download('contacts.pdf');
     }
 }

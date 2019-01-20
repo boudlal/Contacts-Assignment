@@ -13,7 +13,7 @@ class ContactsTest extends TestCase
     public function userCanAddContact()
     {
         $this->json('POST', url('/contacts'), [
-            'first_name' => "nabile",
+            'first_name' => "nabil",
             'last_name' => "boudlal",
             'email' => "boudlal98@gmail.com",
             'phone_number' => "212652317330",
@@ -26,7 +26,7 @@ class ContactsTest extends TestCase
 
 
         $this->assertDatabaseHas('contacts', [
-            'first_name' => 'nabile',
+            'first_name' => 'nabil',
             'last_name' => 'boudlal',
             'email' => 'boudlal98@gmail.com'
         ]);
@@ -37,12 +37,13 @@ class ContactsTest extends TestCase
     /** @test */
     public function userCanDeleteContact()
     {
-        $contact = factory(Contact::class)->create();
+        $contact = factory(Contact::class, 1)->create()[0];
+
 
         $this->json('GET', url('/contacts/'.$contact->id.'/delete'));
 
         $this->assertDatabaseMissing('contacts', [
-            'first_name' => 'Contact'
+            'first_name' => $contact->first_name
         ]);
     }
 
